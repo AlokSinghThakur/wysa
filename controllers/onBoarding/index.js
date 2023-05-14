@@ -7,11 +7,11 @@ module.exports = {
     let timeToBed = req.body.timeToBed;
     let timeOffBed = req.body.timeOffBed;
     let hoursOfSleep = req.body.hoursOfSleep;
-
+    
     if (!userId) {
       return res
         .status(422)
-        .send({ code: 422, status: "failed", msg: "Email is required" });
+        .send({ code: 422, status: "failed", msg: "UserId is required" });
     }
 
     try {
@@ -27,7 +27,7 @@ module.exports = {
       if (dataExits && dataExits != null) {
         res
           .status(422)
-          .send({ code: 422, status: "failed", msg: "User Already exist" });
+          .send({ code: 422, status: "failed", msg: "On Boarding Data for this userID Already exist" });
       }
 
       let onBoardingData = await onBoardingQueries.addOnBoardigData(data);
