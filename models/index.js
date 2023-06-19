@@ -5,14 +5,18 @@ const onBoarding = require('./onboarding')
 
 
 exports.db_config = new Sequelize(
-      'wysa',
+  'sql12627238',
+  'sql12627238',
+  'ZGrXUV1rzY',
+
+      // 'wysa',
       // 'dummy',
       // 'root',
-      'root',
+      // 'root',
       // 'password',
-      'password',
+      // 'password',
       {
-        host:  'localhost',
+        host:  'sql12.freemysqlhosting.net',
         // host :'localhost',
         dialect: 'mysql',
         operatorsAliases: 0,
