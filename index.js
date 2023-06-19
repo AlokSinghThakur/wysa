@@ -10,7 +10,10 @@ const USER_ROUTE = require('./routes/users')
 const ONBOARDING_ROUTE = require('./routes/onBoarding')
 
 app.use('/user',USER_ROUTE)
-app.use('/',ONBOARDING_ROUTE)
+app.use('/first',ONBOARDING_ROUTE)
+app.use("*", (req, res, next) => {
+    res.status(404).send({ code: 404, status: 'failed', msg: "Make sure url is correct!!!" });
+});
 
 models.db_config
     .sync({
