@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 module.exports = {
 
     async signupUser(req,res){
-    let username = req.body.username;
+    let name = req.body.name;
     let email = req.body.email;
     let gender = req.body.gender;
     let dob = req.body.dob;
@@ -18,7 +18,7 @@ module.exports = {
         password = await bcrypt.hash(password, 10);
         
         let data = {
-          username: username,
+          name: name,
           email: email,
           gender: gender,
           dob: dob,
