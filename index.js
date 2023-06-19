@@ -7,7 +7,7 @@ app.use(express.json());
 const models = require('./models');
 
 const USER_ROUTE = require('./routes/users')
-const ONBOARDING_ROUTE = require('./routes/onboarding')
+const ONBOARDING_ROUTE = require('./routes/onBoarding')
 
 app.use('/user',USER_ROUTE)
 app.use('/',ONBOARDING_ROUTE)
