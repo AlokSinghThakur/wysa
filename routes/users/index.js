@@ -1,4 +1,9 @@
-// const express = require('express');
-// const ROUTE = express.Router();
+const express = require('express');
+const ROUTE = express.Router();
 
-// module.exports = ROUTE
+const userController = require('../../controllers/users')
+
+
+ROUTE.post('/signup',userController.signupUser);
+ROUTE.post('/login',userController.login);
+module.exports = ROUTE

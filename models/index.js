@@ -5,7 +5,7 @@ const onBoarding = require('./onboarding')
 
 
 exports.db_config = new Sequelize(
-    'wysa',
+      'wysa',
       // 'dummy',
       // 'root',
       'root',

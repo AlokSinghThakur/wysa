@@ -1,4 +1,4 @@
-
+require('dotenv').config();
 const express = require('express');
 const app = express();
 app.use(express.json());
@@ -6,9 +6,11 @@ app.use(express.json());
 
 const models = require('./models');
 
-const USER_ROUTE = require('./routes/onBoarding')
+const USER_ROUTE = require('./routes/users')
+const ONBOARDING_ROUTE = require('./routes/onboarding')
 
 app.use('/user',USER_ROUTE)
+app.use('/',ONBOARDING_ROUTE)
 
 models.db_config
     .sync({

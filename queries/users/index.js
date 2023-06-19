@@ -9,4 +9,8 @@ module.exports = {
     async addUser(data){
         return await userModule.create(data)
     },
+
+    async getUserById(id){
+        return await userModule.findOne({where:{id:id}})
+    },
 }
