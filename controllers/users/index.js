@@ -12,15 +12,11 @@ module.exports = {
     let dob = req.body.dob;
     let status = req.body.status;
     let password = req.body.password;
-    if (!email) {
-      return res
-        .status(422)
-        .send({ code: 422, status: "failed", msg: "Email is required" });
-    }
+    if (!email || !password) return res.status(422).send({ code: 422, status: 'failed', msg: 'Data is required.' });
 
-    password = await bcrypt.hash(password, 10);
     try {
-      if (email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+        password = await bcrypt.hash(password, 10);
+        
         let data = {
           username: username,
           email: email,
@@ -31,7 +27,7 @@ module.exports = {
         };
         let userExist = await userQueries.getUserByEmail(email);
         if (userExist) {
-          res
+          return res
             .status(422)
             .send({ code: 422, status: "failed", msg: "User Already exist" });
         }
@@ -41,15 +37,6 @@ module.exports = {
         return res
           .status(200)
           .send({ code: 200, status: "success", data: userdata });
-      } else {
-        res
-          .status(422)
-          .send({
-            code: 422,
-            status: "failed",
-            msg: "please Provide email in correct formate",
-          });
-      }
     } catch (err) {
       console.log(err);
       return res
@@ -65,7 +52,11 @@ module.exports = {
 
       try{
           let userExist = await userQueries.getUserByEmail(email)
-          
+          if (!userExist) {
+            return res
+              .status(422)
+              .send({ code: 422, status: "failed", msg: "User Not exist" });
+          }
           // console.log("object",userExist)
           let result = bcrypt.compareSync(password, userExist.password);
           if (result) {

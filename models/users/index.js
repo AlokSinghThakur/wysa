@@ -12,18 +12,22 @@ module.exports = (db_config) => {
             name: {
                 type: DataTypes.STRING,
                 allowNull: true,
-                unique: {
-                    args: true,
-                    msg: 'User Id already in use!',
-                },
             },
             password: {
                 type: DataTypes.STRING,
             },
             email: {
                 type: DataTypes.STRING,
-                allowNull: true,
-                default:null,
+                unique: true,
+                validate: {
+                    len: {
+                        args: [6, 128],
+                        msg: "Email address must be between 6 and 128 characters in length"
+                    },
+                    isEmail: {
+                        msg: "Email address must be valid"
+                    }
+                }
             },
             dob: {
                 type: DataTypes.STRING,

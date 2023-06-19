@@ -2,17 +2,11 @@ const onBoardingQueries = require("../../queries/onBoarding");
 
 module.exports = {
   async onboardUser(req, res) {
-    let userId = req.query.userId;
+    let userId = req.user.id;
     let strugglewithSleep = req.body.strugglewithSleep;
     let timeToBed = req.body.timeToBed;
     let timeOffBed = req.body.timeOffBed;
     let hoursOfSleep = req.body.hoursOfSleep;
-    
-    if (!userId) {
-      return res
-        .status(422)
-        .send({ code: 422, status: "failed", msg: "UserId is required" });
-    }
 
     try {
       let data = {
@@ -24,8 +18,8 @@ module.exports = {
       };
 
       let dataExits = await onBoardingQueries.getOnBoardingData(userId);
-      if (dataExits && dataExits != null) {
-        res
+      if (dataExits) {
+         return res
           .status(422)
           .send({ code: 422, status: "failed", msg: "On Boarding Data for this userID Already exist" });
       }

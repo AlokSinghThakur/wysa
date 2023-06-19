@@ -1,6 +1,6 @@
 const express = require('express');
 const ROUTE = express.Router();
-const authorize = require('../../services')
+const authorize = require('../../services/middleware')
 
 const onBoardingController = require ('../../controllers/onBoarding')
 
